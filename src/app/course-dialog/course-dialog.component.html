@@ -1,0 +1,73 @@
+<!-- <mat-toolbar color="primary" mat-dialog-title> 
+  <span style="flex: 1 1 auto; text-align: center; vertical-align: middle;"> Recommended Over-the-Counter Drug(s)  </span>
+</mat-toolbar> -->
+<mat-dialog-content>
+  <h1> {{data.name}} </h1>
+  <div class="form_container">
+    <img [src]="imageSrc" style="margin-top: 3%; margin-bottom:3%">
+    <mat-list>
+
+      <h1 mat-subheader style="font-size:20px">
+        <mat-icon mat-list-icon>announcement</mat-icon> &nbsp; {{description}}
+      </h1>
+
+      <h3 mat-subheader>Drug Facts</h3>
+      <mat-list-item *ngFor="let fact of drugFacts">
+        <mat-icon mat-list-icon>info</mat-icon>
+        <h4 mat-line>{{fact}}</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+  <h2>
+    Prices and Availability
+  </h2>
+  <div class="form_container">
+    <img [src]="mapsSrc" style="margin-top: 3%; margin-bottom:3%">
+    <mat-list>
+
+      <h3 mat-subheader>Drug Warnings</h3>
+      <mat-list-item *ngFor="let c of cost">
+        <mat-icon mat-list-icon>redeem</mat-icon>
+        <h4 mat-line>{{c}}</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+
+
+  <div *ngIf="data.secondName">
+    <h1> {{data.secondName}} </h1>
+
+    <div class="form_container">
+      <img [src]="imageSecondSrc" style="margin-top: 3%; margin-bottom:3%">
+      <mat-list>
+
+        <h1 mat-subheader style="font-size:20px">
+          <mat-icon mat-list-icon>announcement</mat-icon> &nbsp; {{descriptionTwo}}
+        </h1>
+
+        <h3 mat-subheader>Drug Facts</h3>
+        <mat-list-item *ngFor="let fact of drugFactsTwo">
+          <mat-icon mat-list-icon>info</mat-icon>
+          <h4 mat-line>{{fact}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </div>
+
+
+    <div class="form_container"> 
+        <img [src]="mapSecondSrc" style="margin-top: 3%; margin-bottom:3%">
+        <mat-list>
+            <h3 mat-subheader>Drug Warnings</h3>
+            <mat-list-item *ngFor="let c of costTwo">
+              <mat-icon mat-list-icon>redeem</mat-icon>
+              <h4 mat-line>{{c}}</h4>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+    </div>
+    
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,163 @@
+<!-- START NAVBAR -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">TheraCare</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarsExampleDefault"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<!-- END NAVBAR -->
+
+<!-- Start of Home Page -->
+<div>
+  <div class="jumbotron" style="background: white">
+      <mat-toolbar class="display-3" color="warn"style="text-align: center; font-weight: bolder"> 
+        <span style="margin: 0 auto; font-size: 35px"> Picking the right OTC
+            drug for Cough </span></mat-toolbar>
+    <div class="form_container">
+      <div>
+        <br />
+        <h3> Fill out some Information about yourself </h3>
+        <mat-vertical-stepper [linear]="true" #stepper>
+
+          <mat-step [stepControl]="ageGroup">
+            <form [formGroup]="ageGroup">
+              <ng-template matStepLabel>What is your age?</ng-template>
+              <mat-form-field>
+                <input matInput placeholder="Age" formControlName="ageCtrl" type="number" required>
+              </mat-form-field>
+              <div>
+
+                <button mat-button matStepperNext [disabled]="ageGroup.controls.ageCtrl.value <= 4">Next</button>
+                <div *ngIf="ageGroup.controls.ageCtrl.value != 0 && ageGroup.controls.ageCtrl.value != undefined && ageGroup.controls.ageCtrl.value <= 4"
+                  style="color: red; max-width: 500px"> Please refer to a medical doctor as your condition may be an underlying symptom
+                  of something serious</div>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="lengthOfCough">
+            <form [formGroup]="lengthOfCough">
+              <ng-template matStepLabel>Fill out your symptoms</ng-template>
+              <div> How many days have you had your cough?</div> <!-- 14 days -->
+              <mat-form-field>
+                <input matInput placeholder="Length of Cough" formControlName="lengthCtrl" type="number" required>
+              </mat-form-field>
+              <br />
+              <div> What is your Estimated Oral Temperature? (Fahrenheit) </div>
+              <mat-form-field>
+                <input matInput placeholder="Oral Temperature" formControlName="oralCtrl" type="number" required>
+              </mat-form-field>
+            </form>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext [disabled]="lengthOfCough.controls.oralCtrl.value > 100 || lengthOfCough.controls.lengthCtrl.value > 14">
+                Next</button>
+              <div *ngIf="lengthOfCough.controls.oralCtrl.value != 0 && lengthOfCough.controls.oralCtrl.value != undefined 
+              && lengthOfCough.controls.oralCtrl.value >= 100 || lengthOfCough.controls.lengthCtrl.value != undefined && lengthOfCough.controls.lengthCtrl.value != 0 
+              && lengthOfCough.controls.lengthCtrl.value > 14"
+                style="color: red; max-width: 500px"> Please refer to a medical doctor as your condition may be an underlying symptom of
+                something serious</div>
+            </div>
+          </mat-step>
+
+
+          <mat-step [stepControl]="symptomsGroup">
+            <form [formGroup]="symptomsGroup">
+
+              <ng-template matStepLabel>Do you have any of these conditions? </ng-template>
+              <br />
+              <div> Difficulty Breathing or Shortness of Breath </div>
+              <mat-radio-group formControlName="breathing">
+                  <mat-radio-button value="1">Yes</mat-radio-button>
+                  <mat-radio-button value="0">No</mat-radio-button>
+              </mat-radio-group>
+              <div> Asthma  </div>
+              <mat-radio-group formControlName="asthma">
+                  <mat-radio-button value="1">Yes</mat-radio-button>
+                  <mat-radio-button value="0">No</mat-radio-button>
+              </mat-radio-group>
+              <div> Chronic Obstructive Pulmonary Disease (COPD) </div>
+              <mat-radio-group formControlName="COPD">
+                  <mat-radio-button value="1">Yes</mat-radio-button>
+                  <mat-radio-button value="0">No</mat-radio-button>
+              </mat-radio-group>
+              <div> Whooping or Barking cough </div>
+              <mat-radio-group formControlName="barkwhoop">
+                  <mat-radio-button value="1">Yes</mat-radio-button>
+                  <mat-radio-button value="0">No</mat-radio-button>
+              </mat-radio-group>
+              <br />
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext [disabled]="symptomsGroup.controls.breathing.value == 1 
+              || symptomsGroup.controls.asthma.value == 1 || symptomsGroup.controls.COPD.value == 1 || symptomsGroup.controls.barkwhoop.value == 1"> Next</button>
+              
+              <div *ngIf="symptomsGroup.controls.breathing.value != undefined && symptomsGroup.controls.breathing.value == 0 
+              || symptomsGroup.controls.asthma.value != undefined && symptomsGroup.controls.asthma.value == 0 
+              || symptomsGroup.controls.COPD.value != undefined && symptomsGroup.controls.COPD.value == 0 
+              || symptomsGroup.controls.barkwhoop.value != undefined && symptomsGroup.controls.barkwhoop.value == 0"
+                  style="color: red; max-width: 500px"> Please refer to a medical doctor as your condition may be an underlying symptom
+                  </div>
+
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="coughSeverity">
+              <form [formGroup]="coughSeverity" >
+                  <ng-template matStepLabel> What type of cough do you have? </ng-template>
+                  <div> What type of cough do you have? Does your cough bring up Mucus?</div>
+                  <mat-radio-group formControlName="cough">
+                      <mat-radio-button value="wet">Wet </mat-radio-button>
+                      <mat-radio-button value="dry">Dry</mat-radio-button>
+                  </mat-radio-group>
+                  <br />
+                  <div *ngIf="coughSeverity.controls.cough.value == 'dry'"> How do you want your drug to be administered? </div>
+                  <mat-radio-group formControlName="admin" 
+                  *ngIf="coughSeverity.controls.cough.value == 'dry'">
+                      <mat-radio-button value="top">Topical </mat-radio-button>
+                      <mat-radio-button value="oral">Oral</mat-radio-button>
+                      <mat-radio-button value="loz">Lozenges</mat-radio-button>
+                  </mat-radio-group>
+              </form>
+              <br />
+              <button mat-raised-button color="warn" (click)="onSubmit()"
+              *ngIf="coughSeverity.controls.cough.value == 'dry' 
+              && (coughSeverity.controls.admin.value == 'top' || coughSeverity.controls.admin.value == 'oral' || 
+              coughSeverity.controls.admin.value == 'loz') 
+              || coughSeverity.controls.cough.value == 'wet'">Submit</button>
+
+          </mat-step>
+        </mat-vertical-stepper>
+
+        <!-- <div style="padding-top: 5%" class="form_container">
+          <h5 > Enter Some Information </h5>
+          <h6 style = "margin-left: 10%"> Severity of Symptoms</h6> 
+        </div>
+        
+        <div class="form_container">
+          <mat-select required placeholder="Symptoms" [(value)]="option" style="width: 30%; padding-top: 3%">
+            <mat-option value="0">-- None --</mat-option>
+          </mat-select>
+          <mat-slider thumbLabel [max]="100" style="margin-left: 12%"> </mat-slider>
+        </div>
+
+        <br />
+        <div class="flex_container">
+          <mat-select required placeholder="Frequency of Symptom" [(value)]="option" style="width: 30%; padding-top: 3%">
+            <mat-option value="0">-- None --</mat-option>
+          </mat-select>
+        </div>
+        <br />
+
+        <div class="flex_container">
+          <mat-select required placeholder="Other" [(value)]="option" style="width: 30%; padding-top: 3%">
+            <mat-option value="0">-- None --</mat-option>
+          </mat-select>
+        </div> -->
+      </div>
+      <img src="../assets/img/homepic.jpg" width="565" height="720" style="height: 100%; width: auto; margin-top: 5%; margin-left: 2%">
+    </div>
+    
+  </div>
+</div>
+<!-- END OF HOMEPAGE-->
