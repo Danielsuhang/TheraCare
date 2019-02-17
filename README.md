@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+##Technology Used
+
+We used Angular7, which is a Javascript framework utalizing TypeScript, HTML, and CSS. We used Firebase to host our website. We hardcoded most of our logic and data for the time being to save time, putting the logic / data in a database would be our first step for scaling our project if we had more time. 
