@@ -24,6 +24,20 @@ export class CourseDialogComponent implements OnInit {
 
 
   onNoClick(): void {
+
+    //HARD RESET
+    this.cost = [];
+    this.drugFacts = [];
+    this.descriptionTwo = "";
+    this.description = "";
+    this.drugFactsTwo = [];
+    this.costTwo = [];
+    this.imageSrc = "";
+    this.mapsSrc = "";
+    this.imageSecondSrc = ""
+    this.mapSecondSrc = ""
+
+
     this.dialogRef.close();
   }
   processData() {
@@ -45,15 +59,15 @@ export class CourseDialogComponent implements OnInit {
     else if (this.data.name == "Delsym (dextromethorphan)") {
       this.imageSrc = "../assets/img/Delsym.png";
       this.mapsSrc = "../assets/img/delsymp.jpg";
-      this.imageSecondSrc = "../assets/img/Bendaryl.png";
+      this.imageSecondSrc = "../assets/img/Benadryl.png";
       this.mapSecondSrc = "../assets/img/Benadrylp.jpg"
       this.description = "Medication used for temporary relief of coughs caused by minor throat and bronchial irritation"
       this.drugFacts.push("Use for children older than 6 years old")
       this.drugFacts.push("May cause burning sensation in mouth")
-      this.cost.push("Walgreens: $3.19")
-      this.cost.push("Target: $2.99")
-      this.cost.push("CVS: $2.99")
-      this.cost.push("Harris Teeter: $3.99")
+      this.cost.push("Walgreens: $13.19")
+      this.cost.push("Target: $12.49")
+      this.cost.push("CVS: $14.29")
+      this.cost.push("Harris Teeter: $16.48")
 
       this.descriptionTwo = "Antihistamine used to relieve symptoms of cough from post-nasal drip";
       this.drugFactsTwo.push("Works in 15 minutes")
